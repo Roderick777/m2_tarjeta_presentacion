@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
+import 'package:m2_app_tarjeta_presentacion/pages/widgets/profile_skeleton.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/providers/main.provider.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/info_element.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/profile.widget.dart';
@@ -31,7 +32,7 @@ class _Slide2WidgetState extends State<Slide2Widget> {
               return const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [CircularProgressIndicator(color: Colors.white)],
+                  children: [ProfileSkeleton()],
                 ),
               );
             } else {
