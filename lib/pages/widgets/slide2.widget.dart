@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
 import 'package:m2_app_tarjeta_presentacion/providers/main.provider.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/info_element.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/profile.widget.dart';
@@ -15,16 +16,18 @@ class _Slide2WidgetState extends State<Slide2Widget> {
   @override
   Widget build(BuildContext context) {
     bool loading = Provider.of<MainProvider>(context).loading;
-    dynamic profileData = Provider.of<MainProvider>(context).profileData;
+    ProfileModel profileData = Provider.of<MainProvider>(context).profileData;
 
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.teal,
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 500),
         child: Builder(
-          builder: (context) {
-            if (loading) {
+          builder: (BuildContext c) {
+            int currentSlide = Provider.of<MainProvider>(context).currentSlide;
+
+            if (loading || currentSlide == 0) {
               return const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -39,17 +42,17 @@ class _Slide2WidgetState extends State<Slide2Widget> {
                   child: ListView(
                     children: [
                       ProfileWidget(
-                        avatar: profileData['avatar'],
-                        name: profileData['name'],
-                        position: profileData['position'],
+                        avatar: profileData.avatar,
+                        name: profileData.name,
+                        position: profileData.position,
                       ),
                       const SizedBox(height: 30.0),
                       InfoElementWidget(
-                        text: profileData['phone'],
+                        text: profileData.phone,
                         customIcon: Icons.phone,
                       ),
                       InfoElementWidget(
-                        text: profileData['email'],
+                        text: profileData.email,
                         customIcon: Icons.email,
                       ),
                       const SizedBox(height: 30.0),

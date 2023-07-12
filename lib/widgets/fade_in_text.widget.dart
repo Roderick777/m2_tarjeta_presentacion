@@ -12,7 +12,7 @@ class FadeInText extends StatefulWidget {
   final TextAlign textAlign;
 
   @override
-  _FadeInTextState createState() => _FadeInTextState();
+  State<FadeInText> createState() => _FadeInTextState();
 }
 
 class _FadeInTextState extends State<FadeInText>

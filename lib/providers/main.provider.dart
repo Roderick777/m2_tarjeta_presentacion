@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
 
 class MainProvider with ChangeNotifier {
   bool _loading = true;
-  dynamic _profileData;
+  ProfileModel _profileData = ProfileModel.empty();
   int _currentSlide = 0;
 
   bool get loading => _loading;
-  dynamic get profileData => _profileData;
+  ProfileModel get profileData => _profileData;
   int get currentSlide => _currentSlide;
 
   void setLoading(bool newState) {
@@ -14,7 +15,7 @@ class MainProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setProfileData(dynamic newState) {
+  void setProfileData(ProfileModel newState) {
     _profileData = newState;
     notifyListeners();
   }

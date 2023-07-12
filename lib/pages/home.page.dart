@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
 import 'package:m2_app_tarjeta_presentacion/pages/widgets/slide1.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/pages/widgets/slide2.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/providers/main.provider.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _init() async {
-    dynamic response = await ProfileService.getProfile();
+    ProfileModel response = await ProfileService.getProfile();
     setMainProviderData(response: response);
   }
 
