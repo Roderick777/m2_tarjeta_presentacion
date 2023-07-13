@@ -39,7 +39,7 @@ class _Slide2WidgetState extends State<Slide2Widget> {
               return Center(
                 child: Container(
                   alignment: Alignment.center,
-                  height: 550,
+                  height: 570,
                   child: ListView(
                     children: [
                       ProfileWidget(
