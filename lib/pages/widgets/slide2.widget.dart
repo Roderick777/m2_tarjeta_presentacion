@@ -18,25 +18,29 @@ class _Slide2WidgetState extends State<Slide2Widget> {
   Widget build(BuildContext context) {
     bool loading = Provider.of<MainProvider>(context).loading;
     ProfileModel profileData = Provider.of<MainProvider>(context).profileData;
+    int currentSlide = Provider.of<MainProvider>(context).currentSlide;
 
     return Scaffold(
       extendBody: true,
       backgroundColor: Colors.teal,
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),
-        child: Builder(
-          builder: (BuildContext c) {
-            int currentSlide = Provider.of<MainProvider>(context).currentSlide;
-
-            if (loading || currentSlide == 0) {
-              return const Center(
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return ScaleTransition(
+            scale: animation,
+            child: child,
+          );
+        },
+        child: (loading || currentSlide == 0)
+            ? const Center(
+                key: Key('loader'),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [ProfileSkeleton()],
                 ),
-              );
-            } else {
-              return Center(
+              )
+            : Center(
+                key: const Key('view'),
                 child: Container(
                   alignment: Alignment.center,
                   height: 570,
@@ -61,10 +65,7 @@ class _Slide2WidgetState extends State<Slide2Widget> {
                     ],
                   ),
                 ),
-              );
-            }
-          },
-        ),
+              ),
       ),
     );
   }
