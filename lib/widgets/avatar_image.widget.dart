@@ -35,11 +35,7 @@ class AvatarImageWidget extends StatelessWidget {
           child: const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              ],
+              children: [CircularProgressIndicator(color: Colors.white)],
             ),
           ),
         ),

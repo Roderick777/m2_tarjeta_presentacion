@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
-import 'package:m2_app_tarjeta_presentacion/pages/widgets/slide1.widget.dart';
-import 'package:m2_app_tarjeta_presentacion/pages/widgets/slide2.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/providers/main.provider.dart';
+import 'package:m2_app_tarjeta_presentacion/screens/slide1/slide1.widget.dart';
+import 'package:m2_app_tarjeta_presentacion/screens/slide2/slide2.widget.dart';
+import 'package:m2_app_tarjeta_presentacion/screens/slide3/slide3.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/services/profile.service.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<StatefulWidget> pages = [
     const Slide1Widget(),
-    const Slide2Widget()
+    const Slide2Widget(),
+    const Slide3Widget()
   ];
 
   @override
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _init() async {
+    await Provider.of<MainProvider>(context, listen: false).initTechs();
     ProfileModel response = await ProfileService.getProfile();
     setMainProviderData(response: response);
   }
@@ -38,6 +41,7 @@ class _HomePageState extends State<HomePage> {
 
   void setCurrentSlide(BuildContext c, int index) {
     Provider.of<MainProvider>(c, listen: false).setCurrentSlide(index);
+    setState(() {});
   }
 
   @override
@@ -47,16 +51,13 @@ class _HomePageState extends State<HomePage> {
       extendBody: true,
       body: LiquidSwipe(
         pages: pages,
-        slideIconWidget: currentSlide == 0
-            ? FloatingActionButton(
-                onPressed: () {},
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                child: const Icon(
+        slideIconWidget: [0, 1].contains(currentSlide)
+            ? const SizedBox(
+                width: 70,
+                child: Icon(
                   Icons.chevron_left,
                   color: Colors.white,
+                  size: 50,
                 ),
               )
             : (const SizedBox()),

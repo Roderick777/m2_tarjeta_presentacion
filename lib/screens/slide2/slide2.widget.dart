@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:m2_app_tarjeta_presentacion/models/profile.model.dart';
-import 'package:m2_app_tarjeta_presentacion/pages/widgets/profile_skeleton.widget.dart';
+import 'package:m2_app_tarjeta_presentacion/screens/slide2/widgets/profile_skeleton.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/providers/main.provider.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/info_element.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/profile.widget.dart';
 import 'package:m2_app_tarjeta_presentacion/widgets/qr.widget.dart';
+import 'package:m2_app_tarjeta_presentacion/widgets/social.widget.dart';
 import 'package:provider/provider.dart';
 
 class Slide2Widget extends StatefulWidget {
@@ -19,6 +20,7 @@ class _Slide2WidgetState extends State<Slide2Widget> {
     bool loading = Provider.of<MainProvider>(context).loading;
     ProfileModel profileData = Provider.of<MainProvider>(context).profileData;
     int currentSlide = Provider.of<MainProvider>(context).currentSlide;
+    String qrData = Provider.of<MainProvider>(context).qrData;
 
     return Scaffold(
       extendBody: true,
@@ -43,9 +45,10 @@ class _Slide2WidgetState extends State<Slide2Widget> {
                 key: const Key('view'),
                 child: Container(
                   alignment: Alignment.center,
-                  height: 570,
+                  height: MediaQuery.of(context).size.height,
                   child: ListView(
                     children: [
+                      const SizedBox(height: 30.0),
                       ProfileWidget(
                         avatar: profileData.avatar,
                         name: profileData.name,
@@ -61,7 +64,10 @@ class _Slide2WidgetState extends State<Slide2Widget> {
                         customIcon: Icons.email,
                       ),
                       const SizedBox(height: 30.0),
-                      const QrWidget(dataCode: 'https://github.com/Roderick777')
+                      QrWidget(dataCode: qrData),
+                      const SizedBox(height: 30.0),
+                      const SocialWidget(),
+                      const SizedBox(height: 30.0),
                     ],
                   ),
                 ),

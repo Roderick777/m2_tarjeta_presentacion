@@ -22,8 +22,10 @@ class _ProfileSkeletonState extends State<ProfileSkeleton> {
     return Center(
       child: SizedBox(
         width: 250,
-        child: Column(
+        height: MediaQuery.of(context).size.height,
+        child: ListView(
           children: [
+            const SizedBox(height: 30.0),
             const SkeletonAvatar(
               style: SkeletonAvatarStyle(
                 shape: BoxShape.circle,
@@ -32,29 +34,39 @@ class _ProfileSkeletonState extends State<ProfileSkeleton> {
               ),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: 220,
-              child: SkeletonLine(style: getSkeletonStyle(32)),
+            Center(
+              child: SizedBox(
+                width: 220,
+                child: SkeletonLine(style: getSkeletonStyle(32)),
+              ),
             ),
             const SizedBox(height: 15),
-            SizedBox(
-              width: 140,
-              child: SkeletonLine(style: getSkeletonStyle(20)),
+            Center(
+              child: SizedBox(
+                width: 140,
+                child: SkeletonLine(style: getSkeletonStyle(20)),
+              ),
             ),
             const SizedBox(height: 30),
-            SizedBox(
-              width: 200,
-              child: SkeletonLine(style: getSkeletonStyle(18)),
+            Center(
+              child: SizedBox(
+                width: 200,
+                child: SkeletonLine(style: getSkeletonStyle(18)),
+              ),
             ),
             const SizedBox(height: 25),
-            SizedBox(
-              width: 200,
-              child: SkeletonLine(style: getSkeletonStyle(18)),
+            Center(
+              child: SizedBox(
+                width: 200,
+                child: SkeletonLine(style: getSkeletonStyle(18)),
+              ),
             ),
             const SizedBox(height: 40),
-            SizedBox(
-              width: 170,
-              child: SkeletonLine(style: getSkeletonStyle(170)),
+            Center(
+              child: SizedBox(
+                width: 170,
+                child: SkeletonLine(style: getSkeletonStyle(170)),
+              ),
             ),
             const SizedBox(height: 50),
           ],
